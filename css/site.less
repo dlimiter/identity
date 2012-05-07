@@ -1,0 +1,78 @@
+---
+---
+
+/*
+	Variables
+*/
+@color-white: #fff;
+@color-black: #000;
+@color-orange: #B94E1B;
+@color-off-white: #EEEEEE;
+@color-light-grey: #999;
+@color-med-grey: #666;
+@color-dark-grey:#333;
+
+/*
+	Mixins
+*/
+.border-radius(@radius: 5px) {
+	-webkit-border-radius:  @radius;
+	-moz-border-radius:  @radius;
+	border-radius: @radius;
+	-o-border-radius: @radius;
+}
+
+.border-radius-bottom(@radius: 5px) {
+	-webkit-border-radius:  0 0 @radius @radius;
+	-moz-border-radius: 0 0 @radius @radius;
+	border-radius: 0 0 @radius @radius;
+	-o-border-radius: 0 0 @radius @radius;
+}
+
+.box-shadow(@horiz: 0, @vert: 0, @blur: 0, @spread: 0, @color: rgba(0,0,0,1)) {
+  -webkit-box-shadow: @horiz @vert @blur @spread @color;
+  -moz-box-shadow: @horiz @vert @blur @spread @color;
+  box-shadow: @horiz @vert @blur @spread @color;	
+}
+
+.base-sans-serif {
+	font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+}
+
+.letterpress-light-text (@color: rgba(0,0,0,0.5)) {
+  text-shadow: 0 -1px 1px @color;
+}
+
+.letterpress-dark-text (@color: rgba(255,255,255,0.75)) {
+  text-shadow: 0 1px 0 @color;
+}
+
+.background-gradient (@color-top: @brand-color-dark-green , @color-bottom: darken(@brand-color-dark-green,15%)) {
+	background: @color-bottom;
+  background: -webkit-gradient(linear, left top, left bottom, from(@color-top), to(@color-bottom));
+  background: -webkit-linear-gradient(top, @color-top, @color-bottom);
+  background: -moz-linear-gradient(top, @color-top, @color-bottom);
+  background: -ms-linear-gradient(top, @color-top, @color-bottom);
+  background: -o-linear-gradient(top, @color-top, @color-bottom);
+}
+
+.page-shadow {
+	.box-shadow(0, 1px, 5px, 0, rgba(0,0,0,0.7));
+}
+
+.raleway {
+	 font-family: raleway,"Helvetica Neue",Helvetica,Geneva,Verdana,Arial,sans-serif;
+}
+
+
+/*
+	Global
+*/
+html {
+	background: @color-white;
+}
+
+h1 {
+	.raleway;
+	
+}
