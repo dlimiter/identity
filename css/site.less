@@ -8,6 +8,8 @@
 @color-black: #000;
 @color-orange: #B94E1B;
 @color-off-white: #EEEEEE;
+@color-lighterer-grey: #ccc;		
+@color-lighter-grey: #aaa;
 @color-light-grey: #999;
 @color-med-grey: #666;
 @color-dark-grey:#333;
@@ -76,3 +78,97 @@ h1 {
 	.raleway;
 	
 }
+
+ul, li {
+	margin:0;
+}
+
+ul {
+	list-style: none;
+}
+
+@slice-height:200px;
+
+ul#bottom-flip, ul#middle-flip, ul#top-flip {
+	position:relative;	
+	height:@slice-height;
+	.one, .two, .three {
+		position:absolute;
+		width:940px;
+	}	
+}
+
+.one, .two, .three {
+	display:none;
+}	
+
+
+ul#top-flip {
+	.one {
+	}
+	.two {
+	}
+	.three {
+	}
+}
+
+ul#middle-flip {
+	.one {
+	}
+	.two {
+	}
+	.three {
+	}
+}
+
+ul#bottom-flip {
+	.one {
+	}
+	.two {
+	}
+	.three {
+	}
+}
+
+ul#controls {
+	li {
+		width:100px;
+		height:100px;
+		display:inline-block;
+		color:@color-white;
+		text-align:center;
+		line-height:100px;
+		margin: 0  0 10px 0;		
+		clear:both;
+		&.lock {
+				background: @color-lighter-grey;
+			&.selected {
+				background: @color-lighterer-grey;				
+				color:@color-light-grey;
+			}
+		}
+	}
+}
+
+li.slice.one {
+	display:block;
+}
+
+/* TEMP */
+.one {
+	background: @color-light-grey;		
+}
+.two {
+	background: @color-med-grey;				
+}
+.three {
+	background: @color-dark-grey;				
+}
+
+.one, .two, .three {
+	color:@color-white;
+	height:@slice-height;
+	text-align:center;
+	line-height:200px;
+}
+
