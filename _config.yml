@@ -6,6 +6,8 @@ title:        Contextual Studies
 url:          http://0.0.0.0:4000
 author:       Dave Lim
 email:        dave@dlimiter.net
+css_path:     /identity
+# css_path:       
 #twitter:      http://twitter.com/dlimiter
 #github:       http://github.com/dlimiter
 #dribbble:     http://dribbble.com/dlimiter
