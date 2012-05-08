@@ -62,8 +62,12 @@
 	.box-shadow(0, 1px, 5px, 0, rgba(0,0,0,0.7));
 }
 
-.raleway {
-	 font-family: raleway,"Helvetica Neue",Helvetica,Geneva,Verdana,Arial,sans-serif;
+.sans-serif {
+	 font-family: "Helvetica Neue",Helvetica, Arial,sans-serif;
+}
+
+.museo {
+	 font-family: "museo-sans","Helvetica Neue",Helvetica,Geneva,Verdana,Arial,sans-serif;
 }
 
 
@@ -75,8 +79,12 @@ html {
 }
 
 h1 {
-	.raleway;
-	
+	.sans-serif;
+	font-weight:200;
+	font-size:50px;
+	text-align:right;
+	float:right;
+	color:@color-med-grey;
 }
 
 ul, li {
@@ -87,14 +95,34 @@ ul {
 	list-style: none;
 }
 
-@slice-height:200px;
+@slice-height:150px;
 
 ul#bottom-flip, ul#middle-flip, ul#top-flip {
 	position:relative;	
 	height:@slice-height;
+	cursor:pointer;
 	.one, .two, .three {
 		position:absolute;
-		width:940px;
+		width:780px;
+		span.text {
+			background: rgba(255, 255, 255, 0.5);
+			line-height:1.2em;
+			width:300px;
+			float:right;
+			text-overflow: ellipsis;
+			overflow:hidden;
+			white-space:normal;
+			text-align: left;
+			height:@slice-height - 20px;			
+			padding:10px;
+
+			display: -webkit-box;
+			display: -moz-box;
+			display: box;
+			-webkit-box-align: center;
+			-moz-box-align: center;
+			box-align: center;
+		}		
 	}	
 }
 
@@ -132,19 +160,23 @@ ul#bottom-flip {
 
 ul#controls {
 	li {
-		width:100px;
-		height:100px;
+		width:140px;
+		height:140px;
 		display:inline-block;
 		color:@color-white;
 		text-align:center;
 		line-height:100px;
 		margin: 0  0 10px 0;		
 		clear:both;
+		cursor:pointer;
 		&.lock {
 				background: @color-lighter-grey;
 			&.selected {
 				background: @color-lighterer-grey;				
 				color:@color-light-grey;
+			}
+			&:hover {
+				background: @color-lighterer-grey;								
 			}
 		}
 	}
@@ -169,6 +201,6 @@ li.slice.one {
 	color:@color-white;
 	height:@slice-height;
 	text-align:center;
-	line-height:200px;
+	line-height:@slice-height;
 }
 

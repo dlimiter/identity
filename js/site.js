@@ -2,21 +2,29 @@
 ---
 var classMap =  ['one', 'two', 'three'];
 var SELECTED = "selected";
+var LOCK = "lock";
+var UNLOCK = "unlock";
+var LOCK_TITLE = "Lock the panels to flip them together and see the unmixed imagery";
+var UNLOCK_TITLE = "Unlock the panels to flip them individualy and construct a new identity";
 
 var lockMode = false;
 
 var indexTop = indexMiddle = indexBottom = previousIndex = 0;
 var panelCount = 3;
 
+var duration = 300;
+
 $(document).ready(function () {
-	$('ul#controls .lock').click(function(){
+	var lockControl = $('ul#controls .lock');
+	
+	lockControl.attr('title', LOCK_TITLE).click(function(){
 		//Toggle selected class
 		var $this = $(this);
 		if ($this.hasClass(SELECTED)) {
-			$this.removeClass(SELECTED);
+			$this.removeClass(SELECTED).text(LOCK).attr('title', LOCK_TITLE);
 			lockMode = false;
 		} else {
-			$this.addClass(SELECTED);
+			$this.addClass(SELECTED).text(UNLOCK).attr('title', UNLOCK_TITLE);
 			lockMode = true;
 		}
 		//Toggle lock mode - lock other indexes to top index
@@ -66,10 +74,12 @@ function nextIndex(old) {
 }
 
 function showNextSlice(oldEl, newEl) {
-	console.log(oldEl + '|'+newEl);
+	// console.log(oldEl + '|'+newEl);
 	if (oldEl === newEl) {
 		return 0;
 	}
-	$(oldEl).fadeOut();
-	$(newEl).fadeIn();	
+	$(oldEl).fadeOut(duration);
+	$(newEl).fadeIn(duration, function() {
+		return 0;
+	});	
 }
