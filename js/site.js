@@ -9,14 +9,44 @@ var UNLOCK_TITLE = "Unlock the panels to flip them individualy and construct a n
 
 var lockMode = false;
 
-var indexTop = indexMiddle = indexBottom = previousIndex = 0;
+var indexTop = indexMiddle = indexBottom = previousTopIndex = previousMiddleIndex = previousBottomIndex = 0;
 var panelCount = 3;
 
-var duration = 300;
-
+var flip_speed = 'slow';
+var reset_flip_speed = 'fast';
+var about_speed = 500;
+	
 $(document).ready(function () {
 	var lockControl = $('ul#controls .lock');
+	var aboutControl = $('ul#controls .about');
+	var resetControl = $('ul#controls .reset');	
 	
+	
+	aboutControl.click(function() {
+		$('#about-content').modal({
+		  // Opening animations
+			onOpen: function (dialog) {
+					dialog.overlay.fadeIn(about_speed, function () {
+						dialog.data.hide();
+						dialog.container.fadeIn(about_speed, function () {
+							dialog.data.fadeIn(about_speed);
+						});
+					});
+				},
+		  // Closing animations
+			onClose: function (dialog) {
+					dialog.data.fadeOut(about_speed, function () {
+						dialog.container.fadeOut(about_speed, function () {
+							dialog.overlay.fadeOut(about_speed, function () {
+								$.modal.close();
+							});
+						});
+					});
+				},		
+		overlayClose: true,										
+		});
+	});
+			
 	lockControl.attr('title', LOCK_TITLE).click(function(){
 		//Toggle selected class
 		var $this = $(this);
@@ -27,59 +57,117 @@ $(document).ready(function () {
 			$this.addClass(SELECTED).text(UNLOCK).attr('title', UNLOCK_TITLE);
 			lockMode = true;
 		}
-		//Toggle lock mode - lock other indexes to top index
-		previousIndex = indexMiddle;
-		indexMiddle = (indexTop);
-		thisList = 'middle-flip';
-		showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexMiddle]);			
-		previousIndex = indexBottom;
-		indexBottom = (indexTop);
-		thisList = 'bottom-flip';
-		showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexBottom]);
+		//Toggle lock mode - Deprecated lock and set mode - locks other indexes to top index
+		// 
+		// previousIndex = indexMiddle;
+		// indexMiddle = (indexTop);
+		// thisList = 'middle-flip';
+		// showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexMiddle]);			
+		// previousIndex = indexBottom;
+		// indexBottom = (indexTop);
+		// thisList = 'bottom-flip';
+		// showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexBottom]);
 
 	});
+	
+	resetControl.click(function() {
+		previousTopIndex = indexTop;
+		previousMiddleIndex = indexMiddle;
+		previousBottomIndex = indexBottom;
+		indexTop = indexMiddle = indexBottom = 0;
+		// Cascading locked transitions
+		thisList = 'top-flip';
+		showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], function() {
+			thisList = 'middle-flip';
+			showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], function() {
+				thisList = 'bottom-flip';
+				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);				
+			});
+		});
+		// Simultaneous locked transitions						
+		// thisList = 'top-flip';
+		// showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop]);
+		// thisList = 'middle-flip';
+		// showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle]);
+		// thisList = 'bottom-flip';
+		// showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);				
+	});
+	
 	
 	$('.slice').click(function() {
 		//hide this slice and show next
 		var $this = $(this);
 		var thisList = $this.closest('ul').attr('id');
 		if (lockMode) {
-			thisList = 'top-flip';			
-			indexTop = nextIndex(indexTop);
-			showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexTop]);
-			indexMiddle = indexTop;
-			thisList = 'middle-flip';
-			showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexMiddle]);			
-			indexBottom = indexTop;
-			thisList = 'bottom-flip';			
-			showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexBottom]);
+		// Cascading locked transitions			
+				// thisList = 'top-flip';
+				// indexTop = nextTopIndex(indexTop);
+				// showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], function() {
+				// 	thisList = 'middle-flip';				
+				// 	indexMiddle = nextMiddleIndex(indexMiddle);
+				// 	showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], function() {
+				// 		thisList = 'bottom-flip';				
+				// 		indexBottom = nextBottomIndex(indexBottom);
+				// 		showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);											
+				// 	});
+				// });
+				//Simultaneous locked transitions										
+				thisList = 'top-flip';
+				indexTop = nextTopIndex(indexTop);
+				showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop]);
+				thisList = 'middle-flip';				
+				indexMiddle = nextMiddleIndex(indexMiddle);
+				showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle]);
+				thisList = 'bottom-flip';				
+				indexBottom = nextBottomIndex(indexBottom);
+				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);											
 		} else {
 			if ( thisList === 'top-flip' ) {
-				indexTop = nextIndex(indexTop);
-				showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexTop]);
+				indexTop = nextTopIndex(indexTop);
+				showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop]);
 			} else if ( thisList === 'middle-flip' ) {
-				indexMiddle = nextIndex(indexMiddle);
-				showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexMiddle]);
+				indexMiddle = nextMiddleIndex(indexMiddle);
+				showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle]);
 			} else {
-				indexBottom = nextIndex(indexBottom);
-				showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexBottom]);
+				indexBottom = nextBottomIndex(indexBottom);
+				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);
 			}
 		}
 	});
 });
 
+function nextTopIndex(old) {
+	previousTopIndex = old;	
+	return nextIndex(old);
+}
+
+function nextMiddleIndex(old) {
+	previousMiddleIndex = old;	
+	return nextIndex(old);
+}
+
+function nextBottomIndex(old) {
+	previousBottomIndex = old;	
+	return nextIndex(old);
+}
+
 function nextIndex(old) {
-	previousIndex = old;	
 	return (old+1) % panelCount;
 }
 
-function showNextSlice(oldEl, newEl) {
+function showNextSlice(oldEl, newEl, callback) {
 	// console.log(oldEl + '|'+newEl);
 	if (oldEl === newEl) {
+		if (callback) {
+			callback();
+		}		
 		return 0;
 	}
-	$(oldEl).fadeOut(duration);
-	$(newEl).fadeIn(duration, function() {
+	$(oldEl).fadeOut(flip_speed);
+	$(newEl).fadeIn(flip_speed, function() {
+		if (callback) {
+			callback();
+		}
 		return 0;
 	});	
 }
