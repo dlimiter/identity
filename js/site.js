@@ -77,11 +77,11 @@ $(document).ready(function () {
 		indexTop = indexMiddle = indexBottom = 0;
 		// Cascading locked transitions
 		thisList = 'top-flip';
-		showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], function() {
+		showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], reset_flip_speed, function() {
 			thisList = 'middle-flip';
-			showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], function() {
+			showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], reset_flip_speed, function() {
 				thisList = 'bottom-flip';
-				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);				
+				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom], reset_flip_speed);				
 			});
 		});
 		// Simultaneous locked transitions						
@@ -114,23 +114,23 @@ $(document).ready(function () {
 				//Simultaneous locked transitions										
 				thisList = 'top-flip';
 				indexTop = nextTopIndex(indexTop);
-				showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop]);
+				showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], flip_speed);
 				thisList = 'middle-flip';				
 				indexMiddle = nextMiddleIndex(indexMiddle);
-				showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle]);
+				showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], flip_speed);
 				thisList = 'bottom-flip';				
 				indexBottom = nextBottomIndex(indexBottom);
-				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);											
+				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom], flip_speed);											
 		} else {
 			if ( thisList === 'top-flip' ) {
 				indexTop = nextTopIndex(indexTop);
-				showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop]);
+				showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], flip_speed);
 			} else if ( thisList === 'middle-flip' ) {
 				indexMiddle = nextMiddleIndex(indexMiddle);
-				showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle]);
+				showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], flip_speed);
 			} else {
 				indexBottom = nextBottomIndex(indexBottom);
-				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);
+				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom], flip_speed);
 			}
 		}
 	});
@@ -155,7 +155,7 @@ function nextIndex(old) {
 	return (old+1) % panelCount;
 }
 
-function showNextSlice(oldEl, newEl, callback) {
+function showNextSlice(oldEl, newEl, speed, callback) {
 	// console.log(oldEl + '|'+newEl);
 	if (oldEl === newEl) {
 		if (callback) {
@@ -163,8 +163,8 @@ function showNextSlice(oldEl, newEl, callback) {
 		}		
 		return 0;
 	}
-	$(oldEl).fadeOut(flip_speed);
-	$(newEl).fadeIn(flip_speed, function() {
+	$(oldEl).fadeOut(speed);
+	$(newEl).fadeIn(speed, function() {
 		if (callback) {
 			callback();
 		}

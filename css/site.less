@@ -4,16 +4,36 @@
 /*
 	Variables
 */
-@color-white: #fff;
-@color-black: #000;
+@color-white: rgba(255,255,255,1);
+@color-black: rgba(0,0,0,1);
+/*@color-color: #B94E1B;*/
+/*@color-color: #D40055;*/
+@color-color:#7B909D;
+/*@color-color:#F9C606;*/
+
 @color-orange: #B94E1B;
-@color-off-white: #EEEEEE;
-@color-lighterer-grey: #ccc;		
-@color-lighter-grey: #aaa;
-@color-light-grey: #999;
-@color-med-grey: #666;
-@color-dark-grey:#333;
+
+@color-lighter-grey: rgba(255,255,255,0.2);
+@color-light-grey: rgba(255,255,255,0.6);
+
+@color-med-grey: rgba(0,0,0,0.6);
+@color-dark-grey:rgba(0,0,0,0.8);
+
 @color-about-bg: rgba(255,255,255,0.8	);
+
+@color-control-text:rgba(0,0,0,0.3);
+
+@color-lock-h:rgba(255,255,255,0.7);
+@color-lock:rgba(255,255,255,0.6);
+@color-reset-h:rgba(255,255,255,0.5);
+@color-reset:rgba(255,255,255,0.4);
+@color-about-h: rgba(255,255,255,0.3);
+@color-about: rgba(255,255,255,0.2);
+
+
+@color-lock-h-text: rgba(255,255,255,1);
+
+
 @img-01:"{{ site.css_path}}/img/test01.jpg";
 @img-02:"{{ site.css_path}}/img/test02.jpg";
 @img-03:"{{ site.css_path}}/img/test03.jpg";
@@ -88,7 +108,10 @@ h1 {
 	font-size:50px;
 	text-align:right;
 	float:right;
-	color:@color-med-grey;
+	color:@color-lighter-grey;
+	span.alt {
+		color:@color-light-grey;		
+	}
 }
 
 ul, li {
@@ -109,20 +132,25 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 		position:absolute;
 		width:780px;
 		font-size:2em;
+		span.text-wrapper, span.text {
+			float:right;			
+		}		
+		span.text-wrapper {
+			background: @color-color;
+			width:300px;
+		}
 		span.text {
+			width:240px;
 			position:relative;
 			z-index:101;
 			font-size:0.5em;			
-			background: rgba(255, 255, 255, 0.5);
 			line-height:1.2em;
-			width:280px;
-			float:right;
 			text-overflow: ellipsis;
 			overflow:hidden;
 			white-space:normal;
 			text-align: left;
 			height:@slice-height - 20px;			
-			padding:10px 10px 10px 60px;
+			padding:10px 40px 10px 70px;
 			display: -webkit-box;
 			display: -moz-box;
 			display: box;
@@ -130,26 +158,32 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 			-moz-box-align: center;
 			box-align: center;
 		}		
-	}	
+	}
+	.one {
+		background: url(@img-01) no-repeat top left;
+	}
+
+	.two {
+		background: url(@img-02) no-repeat top left;		
+	}
+
+	.three {
+		background: url(@img-03) no-repeat top left;
+	}
 }
 
 .one, .two, .three {
+	color:@color-black;
+	height:@slice-height;
+	text-align:center;
+	line-height:@slice-height;
 	display:none;
-}	
-
-.one {
-	background: url(@img-01) no-repeat top left;
-}
-
-.two {
-	background: url(@img-02) no-repeat top left;
-}
-
-.three {
-	background: url(@img-03) no-repeat top left;
 }
 
 ul#top-flip {
+	span.text {
+		background:@color-lock;
+	}	
 	.one {
 			background-position: 0 0;
 	}
@@ -162,6 +196,9 @@ ul#top-flip {
 }
 
 ul#middle-flip {
+	span.text {
+		background:@color-reset;
+	}	
 	.one {
 			background-position: 0 -@slice-height;		
 	}
@@ -174,6 +211,9 @@ ul#middle-flip {
 }
 
 ul#bottom-flip {
+	span.text {
+		background:@color-about;
+	}	
 	.one {
 			background-position: 0 -(2*@slice-height);				
 	}
@@ -186,19 +226,15 @@ ul#bottom-flip {
 }
 
 @control-width: @slice-height;
-@color-control-text:rgba(0,0,0,0.3);
-@color-lock: rgba(255,255,255,1);
-@color-lock-h: rgba(255,255,255,0.9);
-@color-lock-h-text: rgba(255,255,255,1);
-@color-reset:rgba(255,255,255,0.8);
-@color-reset-h:rgba(255,255,255,0.7);
-@color-about:rgba(255,255,255,0.6);
-@color-about-h:rgba(255,255,255,0.5);
 
 
 ul#controls {
+	background: @color-color;
+	float:right;
+	width:@control-width + 20px;	
 	li {
-		width:@control-width;
+		float:right;
+		width:@control-width + 20px;
 		height:@control-width;
 		display:inline-block;
 		color:@color-control-text;
@@ -208,29 +244,33 @@ ul#controls {
 		clear:both;
 		cursor:pointer;
 		font-size:2em;
+/*		color:@color-light-grey;*/
+		color:@color-black;		
+		position:relative;
+		z-index:103;
 		&.lock {
-				background: @color-lock;
+				background: fadein(@color-lock, 20%);
 			&.selected {
-				background: @color-lock-h;				
+				background: fadein(@color-lock, 30%);				
 				color: @color-lock-h-text;
 			}
 			&:hover {
-				background: @color-lock-h;								
+				background: fadein(@color-lock, 30%);								
 			}
 		}
 		&.reset{
-				background: @color-reset;
+				background: fadein(@color-reset, 20%);
 			&:hover {
-				background: @color-reset-h;								
-			}			
+				background: fadein(@color-reset, 30%);								
+			}	
 		}
 		&.about{
-				background: @color-about;
+				background: fadein(@color-about, 20%);
+
 			&:hover {
-				background: @color-about-h;								
-			}			
-		}
-		
+				background: fadein(@color-about, 30%);								
+			}		
+		}		
 	}
 }
 
@@ -239,8 +279,8 @@ li.slice.one {
 }
 
 @about-width:500px;
-@color-about-link:rgba(0,0,0,0.4);
-@color-about-link-h:rgba(0,0,0,0.6);
+@color-about-link:rgba(0,0,0,0.6);
+@color-about-link-h:rgba(0,0,0,0.4);
 
 div#about-content {
 	display:none;
@@ -286,6 +326,7 @@ div#about-content {
 	}
 	.dismiss {
 		font-size:0.9em;
+		color:@color-about-link-h;
 		a {
 			color:@color-about-link;
 			border-bottom:1px dotted @color-about-link;
@@ -312,20 +353,3 @@ div#about-content {
 	background-color:@color-black;
 }
 
-/* TEMP */
-/*.one {
-	background: @color-light-grey;		
-}
-.two {
-	background: @color-med-grey;				
-}
-.three {
-	background: @color-dark-grey;				
-}
-*/
-.one, .two, .three {
-	color:@color-white;
-	height:@slice-height;
-	text-align:center;
-	line-height:@slice-height;
-}
