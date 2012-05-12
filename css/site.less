@@ -34,9 +34,22 @@
 @color-lock-h-text: rgba(255,255,255,1);
 
 
-@img-01:"{{ site.css_path}}/img/test01.jpg";
-@img-02:"{{ site.css_path}}/img/test02.jpg";
-@img-03:"{{ site.css_path}}/img/test03.jpg";
+@img-01:"{{ site.css_path}}/img/identities/id_01.png";
+@img-02:"{{ site.css_path}}/img/identities/id_02.png";
+@img-03:"{{ site.css_path}}/img/identities/id_03.png";
+@img-04:"{{ site.css_path}}/img/identities/id_04.png";
+@img-05:"{{ site.css_path}}/img/identities/id_05.png";
+@img-06:"{{ site.css_path}}/img/identities/id_06.png";
+@img-07:"{{ site.css_path}}/img/identities/id_07.png";
+@img-08:"{{ site.css_path}}/img/identities/id_08.png";
+@img-09:"{{ site.css_path}}/img/identities/id_09.png";
+@img-10:"{{ site.css_path}}/img/identities/id_10.png";
+@img-11:"{{ site.css_path}}/img/identities/id_11.png";
+@img-12:"{{ site.css_path}}/img/identities/id_12.png";
+@img-13:"{{ site.css_path}}/img/identities/id_13.png";
+@img-14:"{{ site.css_path}}/img/identities/id_14.png";
+@img-15:"{{ site.css_path}}/img/identities/id_15.png";
+@img-16:"{{ site.css_path}}/img/identities/id_16.png";
 
 /*
 	Mixins
@@ -93,7 +106,6 @@
 .museo {
 	 font-family: "museo-sans","Helvetica Neue",Helvetica,Geneva,Verdana,Arial,sans-serif;
 }
-
 
 /*
 	Global
@@ -164,17 +176,55 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 	.one {
 		background: url(@img-01) no-repeat top left;
 	}
-
 	.two {
 		background: url(@img-02) no-repeat top left;		
 	}
-
 	.three {
 		background: url(@img-03) no-repeat top left;
 	}
+	.four {
+		background: url(@img-04) no-repeat top left;
+	}
+	.five {
+		background: url(@img-05) no-repeat top left;		
+	}
+	.six {
+		background: url(@img-06) no-repeat top left;
+	}
+	.seven {
+		background: url(@img-07) no-repeat top left;
+	}
+	.eight {
+		background: url(@img-08) no-repeat top left;		
+	}
+	.nine {
+		background: url(@img-09) no-repeat top left;
+	}
+	.ten {
+		background: url(@img-10) no-repeat top left;
+	}
+	.eleven {
+		background: url(@img-11) no-repeat top left;		
+	}
+	.twelve {
+		background: url(@img-12) no-repeat top left;
+	}
+	.thirteen {
+		background: url(@img-13) no-repeat top left;
+	}
+	.fourteen {
+		background: url(@img-14) no-repeat top left;		
+	}
+	.fifteen {
+		background: url(@img-15) no-repeat top left;
+	}
+	.sixteen {
+		background: url(@img-16) no-repeat top left;
+	}
+			
 }
 
-.one, .two, .three {
+.slice {
 	color:@color-black;
 	height:@slice-height;
 	text-align:center;
@@ -186,14 +236,8 @@ ul#top-flip {
 	span.text {
 		background:@color-lock;
 	}	
-	.one {
+	.slice {
 			background-position: 0 0;
-	}
-	.two {
-			background-position: 0 0; 
-	}
-	.three {
-			background-position: 0 0; 
 	}
 }
 
@@ -201,14 +245,8 @@ ul#middle-flip {
 	span.text {
 		background:@color-reset;
 	}	
-	.one {
+	.slice {
 			background-position: 0 -@slice-height;		
-	}
-	.two {
-			background-position: 0 -@slice-height;		
-	}
-	.three {
-			background-position: 0 -@slice-height;				
 	}
 }
 
@@ -216,13 +254,7 @@ ul#bottom-flip {
 	span.text {
 		background:@color-about;
 	}	
-	.one {
-			background-position: 0 -(2*@slice-height);				
-	}
-	.two {
-			background-position: 0 -(2*@slice-height);				
-	}
-	.three {
+	.slice {
 			background-position: 0 -(2*@slice-height);				
 	}
 }
