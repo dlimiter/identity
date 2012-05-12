@@ -24,6 +24,7 @@ $(document).ready(function () {
 	
 	aboutControl.click(function() {
 		$('#about-content').modal({
+			opacity: 70,
 		  // Opening animations
 			onOpen: function (dialog) {
 					dialog.overlay.fadeIn(about_speed, function () {

@@ -8,9 +8,9 @@
 @color-black: rgba(0,0,0,1);
 /*@color-color: #B94E1B;*/
 /*@color-color: #D40055;*/
-@color-color:#7B909D;
+/*  @color-color:#7B909D;*/
 /*@color-color:#F9C606;*/
-
+@color-color:#5F642E;
 @color-orange: #B94E1B;
 
 @color-lighter-grey: rgba(255,255,255,0.2);
@@ -130,17 +130,19 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 	cursor:pointer;
 	.one, .two, .three {
 		position:absolute;
-		width:780px;
+/*		width:780px;*/
+		width:820px;
 		font-size:2em;
 		span.text-wrapper, span.text {
 			float:right;			
 		}		
 		span.text-wrapper {
 			background: @color-color;
-			width:300px;
+/*			width:300px;*/
+			width:340px;
 		}
 		span.text {
-			width:240px;
+			width:250px;
 			position:relative;
 			z-index:101;
 			font-size:0.5em;			
@@ -150,7 +152,7 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 			white-space:normal;
 			text-align: left;
 			height:@slice-height - 20px;			
-			padding:10px 40px 10px 70px;
+			padding:10px 65px 10px 90px;
 			display: -webkit-box;
 			display: -moz-box;
 			display: box;
@@ -231,10 +233,11 @@ ul#bottom-flip {
 ul#controls {
 	background: @color-color;
 	float:right;
-	width:@control-width + 20px;	
+	width:@control-width;	
 	li {
 		float:right;
-		width:@control-width + 20px;
+		padding-left:40px;
+		width:@control-width - 40px;
 		height:@control-width;
 		display:inline-block;
 		color:@color-control-text;
@@ -244,10 +247,9 @@ ul#controls {
 		clear:both;
 		cursor:pointer;
 		font-size:2em;
-/*		color:@color-light-grey;*/
 		color:@color-black;		
 		position:relative;
-		z-index:103;
+		z-index:106;
 		&.lock {
 				background: fadein(@color-lock, 20%);
 			&.selected {
@@ -353,3 +355,12 @@ div#about-content {
 	background-color:@color-black;
 }
 
+
+.slice-wrapper {
+	position:relative;
+	z-index:105;
+	height:@slice-height;
+}
+
+li.slice:hover .text {
+}
