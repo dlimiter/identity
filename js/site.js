@@ -4,6 +4,8 @@ var classMap =  ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
 var SELECTED = "selected";
 var LOCK = "lock";
 var UNLOCK = "unlock";
+var RANDOM_ON = "&#x25A0;";
+var RANDOM_OFF = "&#x25BA;";
 var LOCK_TITLE = "Lock the panels to flip them together and see the unmixed imagery";
 var UNLOCK_TITLE = "Unlock the panels to flip them individualy and construct a new identity";
 
@@ -15,6 +17,7 @@ var panelCount = 16;
 var flip_speed = 'slow';
 var reset_flip_speed = 'fast';
 var about_speed = 500;
+
 var randomizin = false;	
 var randomizerInterval = 2000;
 var randomizerRow = 1;
@@ -28,14 +31,16 @@ $(document).ready(function () {
 	
 	var randomizerControl = $('#randomizer');	
 	
-	randomizerControl.click(function() {
+	randomizerControl.html(RANDOM_OFF).click(function() {
 		randomizin = !randomizin;
 		if (randomizin) {
 			// set interval
+			randomizerControl.addClass(SELECTED).html(RANDOM_ON);
 			resetRandomizer();
 			
 			tid = setInterval(randomize, randomizerInterval);
 		} else {
+			randomizerControl.removeClass(SELECTED).html(RANDOM_OFF);			
 			stopRandomizer();
 		}
 	});

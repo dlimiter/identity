@@ -8,9 +8,9 @@
 @color-black: rgba(0,0,0,1);
 /*@color-color: #B94E1B;*/
 /*@color-color: #D40055;*/
-/*  @color-color:#7B909D;*/
+  @color-color:#7B909D;
 /*@color-color:#F9C606;*/
-@color-color:#5F642E;
+/*@color-color:#5F642E;*/
 @color-orange: #B94E1B;
 
 @color-lighter-grey: rgba(255,255,255,0.2);
@@ -33,6 +33,8 @@
 
 @color-lock-h-text: rgba(255,255,255,1);
 
+@color-bg: @color-black;
+/*@color-bg: @color-color;*/
 
 @img-01:"{{ site.css_path}}/img/identities/id_01.png";
 @img-02:"{{ site.css_path}}/img/identities/id_02.png";
@@ -111,7 +113,7 @@
 	Global
 */
 html {
-	background: @color-black;
+	background: @color-bg;
 }
 
 h1 {
@@ -402,6 +404,14 @@ div.randomizer {
 	margin:10px;
 	width:50px;
 	height:50px;
-	background:@color-about-bg;
+	background:@color-about;
 	cursor:pointer;
+	text-align:center;
+	line-height:50px;
+	font-size:2em;
+	vertical-align:middle;
+	color: @color-bg;
+	&.selected {
+		line-height:45px;
+	}
 }
