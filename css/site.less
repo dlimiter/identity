@@ -274,21 +274,20 @@ ul#controls {
 		width:@control-width - 40px;
 		height:@control-width;
 		display:inline-block;
-		color:@color-control-text;
 		text-align:center;
 		line-height:@control-width;
 		margin:0;		
 		clear:both;
 		cursor:pointer;
 		font-size:2em;
-		color:@color-black;		
+		color: @color-color;
 		position:relative;
 		z-index:106;
 		&.lock {
 				background: fadein(@color-lock, 20%);
 			&.selected {
 				background: fadein(@color-lock, 30%);				
-				color: @color-lock-h-text;
+				color: lighten(@color-color, 20%);
 			}
 			&:hover {
 				background: fadein(@color-lock, 30%);								
