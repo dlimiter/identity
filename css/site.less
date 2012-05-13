@@ -140,10 +140,10 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 	position:relative;	
 	height:@slice-height;
 	cursor:pointer;
-	.one, .two, .three {
+	.slice {
 		position:absolute;
 /*		width:780px;*/
-		width:820px;
+		width:660px;
 		font-size:2em;
 		span.text-wrapper, span.text {
 			float:right;			
@@ -151,10 +151,10 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 		span.text-wrapper {
 			background: @color-color;
 /*			width:300px;*/
-			width:340px;
+			width:260px;
 		}
 		span.text {
-			width:250px;
+			width:170px;
 			position:relative;
 			z-index:101;
 			font-size:0.5em;			
@@ -395,4 +395,13 @@ div#about-content {
 }
 
 li.slice:hover .text {
+}
+
+
+div.randomizer {
+	margin:10px;
+	width:50px;
+	height:50px;
+	background:@color-about-bg;
+	cursor:pointer;
 }

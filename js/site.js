@@ -1,6 +1,6 @@
 ---
 ---
-var classMap =  ['one', 'two', 'three'];
+var classMap =  ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'];
 var SELECTED = "selected";
 var LOCK = "lock";
 var UNLOCK = "unlock";
@@ -10,17 +10,35 @@ var UNLOCK_TITLE = "Unlock the panels to flip them individualy and construct a n
 var lockMode = false;
 
 var indexTop = indexMiddle = indexBottom = previousTopIndex = previousMiddleIndex = previousBottomIndex = 0;
-var panelCount = 3;
+var panelCount = 16;
 
 var flip_speed = 'slow';
 var reset_flip_speed = 'fast';
 var about_speed = 500;
-	
+var randomizin = false;	
+var randomizerInterval = 2000;
+var randomizerRow = 1;
+var tid;
+
+
 $(document).ready(function () {
 	var lockControl = $('ul#controls .lock');
 	var aboutControl = $('ul#controls .about');
 	var resetControl = $('ul#controls .reset');	
 	
+	var randomizerControl = $('#randomizer');	
+	
+	randomizerControl.click(function() {
+		randomizin = !randomizin;
+		if (randomizin) {
+			// set interval
+			resetRandomizer();
+			
+			tid = setInterval(randomize, randomizerInterval);
+		} else {
+			stopRandomizer();
+		}
+	});
 	
 	aboutControl.click(function() {
 		$('#about-content').modal({
@@ -171,4 +189,48 @@ function showNextSlice(oldEl, newEl, speed, callback) {
 		}
 		return 0;
 	});	
+}
+
+function getRandomIndex() {
+	return Math.floor(Math.random()*(panelCount));
+}
+
+function randomize() {
+	//Do we change all three at once every interval, or one every interval?
+	
+	//Increment row
+	incrementRandomizerRow(); 	
+	randomizeRow(randomizerRow);
+}
+
+function 	stopRandomizer() { // to be called when you want to stop the timer
+		clearInterval(tid);	
+}
+
+function resetRandomizer() {
+	randomizerRow = 2;
+}
+
+function 	incrementRandomizerRow() {
+	randomizerRow = ((randomizerRow + 1) % 3);
+}
+
+function randomizeRow(row) {
+	var thisList;	
+	if (row == 0) {
+		thisList = 'top-flip';
+		previousTopIndex = indexTop;		
+		indexTop = getRandomIndex();
+		showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], flip_speed);		
+	} else if (row == 1) {
+		thisList = 'middle-flip';
+		previousMiddleIndex = indexMiddle;
+		indexMiddle = getRandomIndex();
+		showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], flip_speed);		
+	} else {
+		thisList = 'bottom-flip';
+		previousBottomIndex = indexBottom;		
+		indexBottom = getRandomIndex();
+		showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom], flip_speed);
+	}
 }
