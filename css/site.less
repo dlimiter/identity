@@ -29,7 +29,7 @@
 @color-reset:rgba(255,255,255,0.4);
 @color-about-h: rgba(255,255,255,0.3);
 @color-about: rgba(255,255,255,0.2);
-
+@color-randomizer: rgba(255,255,255,0.15);
 
 @color-lock-h-text: rgba(255,255,255,1);
 
@@ -126,6 +126,10 @@ h1 {
 	span.alt {
 		color:@color-light-grey;		
 	}
+}
+
+#content-wrapper {
+	background: @color-color;
 }
 
 ul, li {
@@ -400,10 +404,10 @@ li.slice:hover .text {
 
 
 div.randomizer {
-	margin:10px;
-	width:50px;
+	margin:10px auto;
+	width:780px;
 	height:50px;
-	background:@color-about;
+	background:@color-randomizer;
 	cursor:pointer;
 	text-align:center;
 	line-height:50px;
@@ -412,5 +416,7 @@ div.randomizer {
 	color: @color-bg;
 	&.selected {
 		line-height:45px;
+		background:@color-about;
+		
 	}
 }
