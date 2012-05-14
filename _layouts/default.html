@@ -31,21 +31,47 @@
     
   </head>
   <body> 
-    <div id="page">
-      
+	   <div id="page">
+     
     	{% include header.html %}
-				
+			
       <div id="content-wrapper">
 				<section id="content" class="container_12">
 	        {{ content }}
+	
+					<!-- Tutorial sections-->
+
+					<div id="hi-flip-instruction" class="instruction">Click the panel areas to flip them to the next page
+						<div class="r_pointer"></div>	
+					</div>
+					<div id="hi-flip-top" class="highlight"></div>
+					<div id="hi-flip-middle" class="highlight"></div>
+					<div id="hi-flip-bottom" class="highlight"></div>
+	
+					<div id="hi-control-top-instruction" class="instruction">Click <em>lock</em> to turn all three panels as a page
+						<div class="l_pointer"></div>	
+					</div>
+					<div id="hi-control-middle-instruction" class="instruction">Click <em>reset</em> to return all panels to the start
+						<div class="l_pointer"></div>	
+					</div>
+					<div id="hi-control-bottom-instruction" class="instruction">Click <em>about</em> for more about this page 
+						<div class="l_pointer"></div>	
+					</div>
+					
+					<div id="hi-control-top" class="highlight"></div>
+					<div id="hi-control-middle" class="highlight"></div>
+					<div id="hi-control-bottom" class="highlight"></div>
+	
 	      </section>
       </div>
-    
+   
 			{% include footer.html %}
 
-      
+     
     	{% include about.html %}
   	</div>
-  
+		<div id="coverControl">
+  	</div>
+
   </body>
 </html>

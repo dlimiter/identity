@@ -16,6 +16,7 @@ var panelCount = 16;
 
 var flip_speed = 'slow';
 var reset_flip_speed = 'fast';
+var inst_speed = 'slow';
 var about_speed = 500;
 
 var randomizin = false;	
@@ -32,8 +33,56 @@ $(document).ready(function () {
 	var resetControl = $('ul#controls .reset');	
 	
 	var randomizerControl = $('#randomizer');	
+	var coverControl = $('#coverControl');	
 
-	$("body").click(function() {
+	coverControl.click(function() {
+		coverControl.remove();
+
+		//Demo
+		//Show the slice instructions
+		$("#hi-flip-instruction").fadeIn(inst_speed, function(){		
+		
+			$("#hi-flip-top").fadeIn(inst_speed, function(){
+				$("#hi-flip-top").fadeOut(inst_speed, function(){
+					$("#hi-flip-middle").fadeIn(inst_speed, function(){
+						$("#hi-flip-middle").fadeOut(inst_speed, function(){
+							$("#hi-flip-bottom").fadeIn(inst_speed, function(){
+								$("#hi-flip-bottom").fadeOut(inst_speed, function() {
+									$("#hi-flip-instruction").fadeOut(inst_speed, function(){
+										// Show control instructions
+										$("#hi-control-top-instruction").fadeIn(inst_speed, function(){		
+											$("#hi-control-top").fadeIn(inst_speed, function(){		
+												$("#hi-control-top").fadeOut(inst_speed, function(){	
+													$("#hi-control-top-instruction").fadeOut(inst_speed, function(){						
+														$("#hi-control-middle-instruction").fadeIn(inst_speed, function(){		
+															$("#hi-control-middle").fadeIn(inst_speed, function(){		
+																$("#hi-control-middle").fadeOut(inst_speed, function(){	
+																	$("#hi-control-middle-instruction").fadeOut(inst_speed, function(){						
+																		$("#hi-control-bottom-instruction").fadeIn(inst_speed, function(){		
+																			$("#hi-control-bottom").fadeIn(inst_speed, function(){		
+																				$("#hi-control-bottom").fadeOut(inst_speed, function(){	
+																					$("#hi-control-bottom-instruction").fadeOut(inst_speed);
+																				});						
+																			});	
+																		});
+																	});
+																});						
+															});	
+														});
+													});
+												});						
+											});	
+										});										
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+		// End demo
+	});
+		
 		$(".cover").fadeOut(flip_speed);
 		$("li.slice.one").fadeIn(flip_speed);		
 	});
@@ -129,9 +178,6 @@ $(document).ready(function () {
 		//hide this slice and show next
 		var $this = $(this);
 		var thisList = $this.closest('ul').attr('id');
-		if ($this.hasClass("cover")) {
-			return;
-		}
 		if (lockMode) {
 		// Cascading locked transitions			
 				// thisList = 'top-flip';
