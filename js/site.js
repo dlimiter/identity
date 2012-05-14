@@ -37,52 +37,7 @@ $(document).ready(function () {
 
 	coverControl.click(function() {
 		coverControl.remove();
-
-		//Demo
-		//Show the slice instructions
-		$("#hi-flip-instruction").fadeIn(inst_speed, function(){		
-		
-			$("#hi-flip-top").fadeIn(inst_speed, function(){
-				$("#hi-flip-top").fadeOut(inst_speed, function(){
-					$("#hi-flip-middle").fadeIn(inst_speed, function(){
-						$("#hi-flip-middle").fadeOut(inst_speed, function(){
-							$("#hi-flip-bottom").fadeIn(inst_speed, function(){
-								$("#hi-flip-bottom").fadeOut(inst_speed, function() {
-									$("#hi-flip-instruction").fadeOut(inst_speed, function(){
-										// Show control instructions
-										$("#hi-control-top-instruction").fadeIn(inst_speed, function(){		
-											$("#hi-control-top").fadeIn(inst_speed, function(){		
-												$("#hi-control-top").fadeOut(inst_speed, function(){	
-													$("#hi-control-top-instruction").fadeOut(inst_speed, function(){						
-														$("#hi-control-middle-instruction").fadeIn(inst_speed, function(){		
-															$("#hi-control-middle").fadeIn(inst_speed, function(){		
-																$("#hi-control-middle").fadeOut(inst_speed, function(){	
-																	$("#hi-control-middle-instruction").fadeOut(inst_speed, function(){						
-																		$("#hi-control-bottom-instruction").fadeIn(inst_speed, function(){		
-																			$("#hi-control-bottom").fadeIn(inst_speed, function(){		
-																				$("#hi-control-bottom").fadeOut(inst_speed, function(){	
-																					$("#hi-control-bottom-instruction").fadeOut(inst_speed);
-																				});						
-																			});	
-																		});
-																	});
-																});						
-															});	
-														});
-													});
-												});						
-											});	
-										});										
-									});
-								});
-							});
-						});
-					});
-				});
-			});
-		// End demo
-	});
-		
+		// playDemo();
 		$(".cover").fadeOut(flip_speed);
 		$("li.slice.one").fadeIn(flip_speed);		
 	});
@@ -137,17 +92,6 @@ $(document).ready(function () {
 			$this.addClass(SELECTED).text(UNLOCK).attr('title', UNLOCK_TITLE);
 			lockMode = true;
 		}
-		//Toggle lock mode - Deprecated lock and set mode - locks other indexes to top index
-		// 
-		// previousIndex = indexMiddle;
-		// indexMiddle = (indexTop);
-		// thisList = 'middle-flip';
-		// showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexMiddle]);			
-		// previousIndex = indexBottom;
-		// indexBottom = (indexTop);
-		// thisList = 'bottom-flip';
-		// showNextSlice('#'+thisList+' .'+classMap[previousIndex], '#'+thisList+' .'+classMap[indexBottom]);
-
 	});
 	
 	resetControl.click(function() {
@@ -164,13 +108,6 @@ $(document).ready(function () {
 				showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom], reset_flip_speed);				
 			});
 		});
-		// Simultaneous locked transitions						
-		// thisList = 'top-flip';
-		// showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop]);
-		// thisList = 'middle-flip';
-		// showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle]);
-		// thisList = 'bottom-flip';
-		// showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);				
 	});
 	
 	
@@ -179,18 +116,6 @@ $(document).ready(function () {
 		var $this = $(this);
 		var thisList = $this.closest('ul').attr('id');
 		if (lockMode) {
-		// Cascading locked transitions			
-				// thisList = 'top-flip';
-				// indexTop = nextTopIndex(indexTop);
-				// showNextSlice('#'+thisList+' .'+classMap[previousTopIndex], '#'+thisList+' .'+classMap[indexTop], function() {
-				// 	thisList = 'middle-flip';				
-				// 	indexMiddle = nextMiddleIndex(indexMiddle);
-				// 	showNextSlice('#'+thisList+' .'+classMap[previousMiddleIndex], '#'+thisList+' .'+classMap[indexMiddle], function() {
-				// 		thisList = 'bottom-flip';				
-				// 		indexBottom = nextBottomIndex(indexBottom);
-				// 		showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom]);											
-				// 	});
-				// });
 				//Simultaneous locked transitions										
 				thisList = 'top-flip';
 				indexTop = nextTopIndex(indexTop);
@@ -294,4 +219,58 @@ function randomizeRow(row) {
 		indexBottom = getRandomIndex();
 		showNextSlice('#'+thisList+' .'+classMap[previousBottomIndex], '#'+thisList+' .'+classMap[indexBottom], flip_speed);
 	}
+}
+function tutorial() {
+	$.modal.close();
+	setTimeout(function() {
+		playDemo();		
+	}, 700);
+
+}
+
+function playDemo() {
+	//Demo
+	//Show the slice instructions
+	$("#hi-flip-instruction").fadeIn(inst_speed, function(){		
+	
+		$("#hi-flip-top").fadeIn(inst_speed, function(){
+			$("#hi-flip-top").fadeOut(inst_speed, function(){
+				$("#hi-flip-middle").fadeIn(inst_speed, function(){
+					$("#hi-flip-middle").fadeOut(inst_speed, function(){
+						$("#hi-flip-bottom").fadeIn(inst_speed, function(){
+							$("#hi-flip-bottom").fadeOut(inst_speed, function() {
+								$("#hi-flip-instruction").fadeOut(inst_speed, function(){
+									// Show control instructions
+									$("#hi-control-top-instruction").fadeIn(inst_speed, function(){		
+										$("#hi-control-top").fadeIn(inst_speed, function(){		
+											$("#hi-control-top").fadeOut(inst_speed, function(){	
+												$("#hi-control-top-instruction").fadeOut(inst_speed, function(){						
+													$("#hi-control-middle-instruction").fadeIn(inst_speed, function(){		
+														$("#hi-control-middle").fadeIn(inst_speed, function(){		
+															$("#hi-control-middle").fadeOut(inst_speed, function(){	
+																$("#hi-control-middle-instruction").fadeOut(inst_speed, function(){						
+																	$("#hi-control-bottom-instruction").fadeIn(inst_speed, function(){		
+																		$("#hi-control-bottom").fadeIn(inst_speed, function(){		
+																			$("#hi-control-bottom").fadeOut(inst_speed, function(){	
+																				$("#hi-control-bottom-instruction").fadeOut(inst_speed);
+																			});						
+																		});	
+																	});
+																});
+															});						
+														});	
+													});
+												});
+											});						
+										});	
+									});										
+								});
+							});
+						});
+					});
+				});
+			});
+		});
+	});
+	// End demo	
 }
