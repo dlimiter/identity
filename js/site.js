@@ -23,6 +23,8 @@ var randomizerInterval = 2000;
 var randomizerRow = 1;
 var tid;
 
+var covered = true;
+
 
 $(document).ready(function () {
 	var lockControl = $('ul#controls .lock');
@@ -30,6 +32,11 @@ $(document).ready(function () {
 	var resetControl = $('ul#controls .reset');	
 	
 	var randomizerControl = $('#randomizer');	
+
+	$("body").click(function() {
+		$(".cover").fadeOut(flip_speed);
+		$("li.slice.one").fadeIn(flip_speed);		
+	});
 	
 	randomizerControl.html(RANDOM_OFF).click(function() {
 		randomizin = !randomizin;
@@ -122,6 +129,9 @@ $(document).ready(function () {
 		//hide this slice and show next
 		var $this = $(this);
 		var thisList = $this.closest('ul').attr('id');
+		if ($this.hasClass("cover")) {
+			return;
+		}
 		if (lockMode) {
 		// Cascading locked transitions			
 				// thisList = 'top-flip';

@@ -36,6 +36,7 @@
 @color-bg: @color-black;
 /*@color-bg: @color-color;*/
 
+@img-cover:"{{ site.css_path}}/img/identities/cover.png";
 @img-01:"{{ site.css_path}}/img/identities/id_01.png";
 @img-02:"{{ site.css_path}}/img/identities/id_02.png";
 @img-03:"{{ site.css_path}}/img/identities/id_03.png";
@@ -179,6 +180,9 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 			box-align: center;
 		}		
 	}
+	.cover {
+		background: url(@img-cover) no-repeat top left;
+	}
 	.one {
 		background: url(@img-01) no-repeat top left;
 	}
@@ -278,8 +282,9 @@ ul#controls {
 		width:@control-width - 40px;
 		height:@control-width;
 		display:inline-block;
-		text-align:center;
-		line-height:@control-width;
+		text-align:right;
+		padding-right:5px;
+		line-height:@control-width * 1.8;
 		margin:0;		
 		clear:both;
 		cursor:pointer;
@@ -313,7 +318,7 @@ ul#controls {
 	}
 }
 
-li.slice.one {
+li.slice.cover {
 	display:block;
 }
 
