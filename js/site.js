@@ -16,7 +16,7 @@ var panelCount = 16;
 
 var flip_speed = 'slow';
 var reset_flip_speed = 'fast';
-var inst_speed = 'slow';
+var inst_speed = 500;
 var about_speed = 500;
 
 var randomizin = false;	
@@ -31,15 +31,21 @@ $(document).ready(function () {
 	var lockControl = $('ul#controls .lock');
 	var aboutControl = $('ul#controls .about');
 	var resetControl = $('ul#controls .reset');	
-	
 	var randomizerControl = $('#randomizer');	
+	var helpControl = $('#helper');		
 	var coverControl = $('#coverControl');	
+
+	helpControl.click(function() {
+		playDemo();
+	});
 
 	coverControl.click(function() {
 		coverControl.remove();
 		// playDemo();
 		$(".cover").fadeOut(flip_speed);
+		//displayHiddenBits();
 		$("li.slice.one").fadeIn(flip_speed);		
+		$(".hidden").fadeIn(flip_speed);
 	});
 	
 	randomizerControl.html(RANDOM_OFF).click(function() {

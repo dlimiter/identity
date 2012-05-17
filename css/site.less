@@ -8,9 +8,10 @@
 @color-black: rgba(0,0,0,1);
 /*@color-color: #B94E1B;*/
 /*@color-color: #D40055;*/
-  @color-color:#7B909D;
+/*  @color-color:#7B909D;*/
 /*@color-color:#F9C606;*/
 /*@color-color:#5F642E;*/
+@color-color:#C72B2D;
 @color-orange: #B94E1B;
 
 @color-lighter-grey: rgba(255,255,255,0.2);
@@ -124,6 +125,7 @@ h1 {
 	text-align:right;
 	float:right;
 	color:@color-lighter-grey;
+	margin-top:0.5em;
 	span.alt {
 		color:@color-light-grey;		
 	}
@@ -149,7 +151,6 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 	cursor:pointer;
 	.slice {
 		position:absolute;
-/*		width:780px;*/
 		width:660px;
 		font-size:2em;
 		span.text-wrapper, span.text {
@@ -157,14 +158,13 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 		}		
 		span.text-wrapper {
 			background: @color-color;
-/*			width:300px;*/
 			width:260px;
 		}
 		span.text {
 			width:170px;
 			position:relative;
 			z-index:101;
-			font-size:0.5em;			
+			font-size:0.8em;			
 			line-height:1.2em;
 			text-overflow: ellipsis;
 			overflow:hidden;
@@ -178,10 +178,18 @@ ul#bottom-flip, ul#middle-flip, ul#top-flip {
 			-webkit-box-align: center;
 			-moz-box-align: center;
 			box-align: center;
+			span.context {
+				color:@color-white;
+			}
 		}		
 	}
 	.cover {
 		background: url(@img-cover) no-repeat top left;
+			span.text {
+				color:@color-white;
+				font-size:0.9em;
+				text-align: left;
+			}			
 	}
 	.one {
 		background: url(@img-01) no-repeat top left;
@@ -410,10 +418,8 @@ div#about-content {
 li.slice:hover .text {
 }
 
-
-div.randomizer {
+div.helper, div.randomizer {
 	margin:10px auto;
-	width:780px;
 	height:50px;
 	background:@color-randomizer;
 	cursor:pointer;
@@ -421,7 +427,18 @@ div.randomizer {
 	line-height:50px;
 	font-size:2em;
 	vertical-align:middle;
-	color: @color-bg;
+	color: @color-bg;	
+	display:inline-block;
+}
+
+div.helper {
+	margin-left:5px;	
+	width:@slice-height;
+}
+
+div.randomizer {
+	margin-left:90px;	
+	width:780px - @slice-height - 8px;
 	&.selected {
 		line-height:45px;
 		background:@color-about;
@@ -542,3 +559,10 @@ div#coverControl {
 	
 }
 
+footer {
+	min-height:70px;
+}
+
+.hidden {
+	display:none;
+}
