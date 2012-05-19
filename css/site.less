@@ -364,12 +364,12 @@ div#about-content {
 		margin: 0 auto;
 		padding-bottom:2em;		
 		li {
-			display:inline-block;
+			display:block;
 			&.lock {
-				width:440px;
+/*				width:440px;*/
 			}
 			&.reset {
-				width:400px;
+/*				width:400px;*/
 			}
 			&.about {
 
@@ -429,6 +429,10 @@ div.helper, div.randomizer {
 	vertical-align:middle;
 	color: @color-bg;	
 	display:inline-block;
+	&:hover {
+		background:@color-about;		
+	}
+	
 }
 
 div.helper {
